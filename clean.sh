@@ -1,10 +1,11 @@
 #!/bin/bash
-PROJECT_ID=speedy-victory-336109
-REGION=us-central1
-VPC_NETWORK=myvpc
-GKE_CLUSTER_NAME=dify
-REDIS_CLUSTER_NAME=dify
-DB_CLUSTER_NAME=dify
+
+# PROJECT_ID=speedy-victory-336109
+# REGION=us-central1
+# VPC_NETWORK=myvpc
+# GKE_CLUSTER_NAME=dify
+# REDIS_CLUSTER_NAME=dify
+# DB_CLUSTER_NAME=dify
 
 echo "Deleting GKE resource ..."
 gcloud container clusters delete ${GKE_CLUSTER_NAME} --project ${PROJECT_ID} --region ${REGION} --async --quiet > /dev/null

@@ -2,15 +2,15 @@
 set -e
 
 # Parameters
-export PROJECT_ID=speedy-victory-336109
-export REGION=us-central1
-export VPC_NETWORK=myvpc
-export GKE_CLUSTER_NAME=dify
-export REDIS_CLUSTER_NAME=dify
-export DB_CLUSTER_NAME=dify
-export DB_PASSWORD=">)4-Z4rTL7Ai'23H"
-export DIFY_VERSION=0.6.9
-export ZONE=${REGION}-b
+# export PROJECT_ID=speedy-victory-336109
+# export REGION=us-central1
+# export VPC_NETWORK=myvpc
+# export GKE_CLUSTER_NAME=dify
+# export REDIS_CLUSTER_NAME=dify
+# export DB_CLUSTER_NAME=dify
+# export DB_PASSWORD=">)4-Z4rTL7Ai'23H"
+# export DIFY_VERSION=0.6.9
+# export ZONE=${REGION}-b
 
 
 echo "Enable services ... "
