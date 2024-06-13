@@ -23,6 +23,7 @@ export ZONE=${REGION}-b
 ```
 bash deploy.sh
 ```
+- wait for the script to finish, it takes about 15 minutes
 
 ## Clean resources
 - set parameters
