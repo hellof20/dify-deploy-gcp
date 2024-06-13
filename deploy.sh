@@ -112,5 +112,5 @@ until [[ $(kubectl get ingress -o jsonpath='{.items[].status.loadBalancer.ingres
     echo "Waiting ingress to be ready ..."
 done
 ip=$(kubectl get ingress -o jsonpath='{.items[].status.loadBalancer.ingress[].ip}')
-sleep 60
+sleep 180
 echo "Please access: http://$ip"
