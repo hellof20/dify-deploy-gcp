@@ -1,5 +1,7 @@
 # dify-deploy-gcp
-Deploy Dify on Google Cloud, data is stored in Cloud SQL and Memstore for Redis to improve durability, and the components of Dify are deployed in GKE to improve reliability and scalability.
+**Deploy Dify on Google Cloud.**
+- Data is stored in Cloud SQL and Memstore for Redis to improve durability, and the components of Dify are deployed in GKE to improve reliability and scalability.
+- Cloud Armor and Global Load Balancing can provide global acceleration capabilities, DDoS protection, and WAF strategies.
 
 ## Architect
 ![image](https://github.com/hellof20/dify-deploy-gcp/assets/8756642/e8064b98-b46c-4e92-beb5-5144f287e76a)
