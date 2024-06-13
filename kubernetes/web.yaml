@@ -1,0 +1,56 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: web
+  name: web
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: web
+  template:
+    metadata:
+      labels:
+        app: web
+    spec:
+      containers:
+        - env:
+            - name: APP_API_URL
+            - name: CONSOLE_API_URL
+            - name: SENTRY_DSN
+          image: langgenius/dify-web:$DIFY_VERSION
+          name: web
+          ports:
+            - containerPort: 3000
+              protocol: TCP
+      restartPolicy: Always
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    cloud.google.com/backend-config: '{"default": "dify-web-backendconfig"}'
+  labels:
+    app: web
+  name: web
+spec:
+  ports:
+    - name: "3000"
+      port: 3000
+      targetPort: 3000
+  selector:
+    app: web
+
+---
+apiVersion: cloud.google.com/v1
+kind: BackendConfig
+metadata:
+  name: dify-web-backendconfig
+spec:
+  healthCheck:
+    checkIntervalSec: 15
+    port: 3000
+    type: HTTP
+    requestPath: /apps

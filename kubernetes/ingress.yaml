@@ -1,0 +1,41 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: dify-ingress
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /console/api/*
+        pathType: ImplementationSpecific
+        backend:
+          service:
+            name: api
+            port:
+              number: 5001
+      - path: /api/*
+        pathType: ImplementationSpecific
+        backend:
+          service:
+            name: api
+            port:
+              number: 5001
+      - path: /v1/*
+        pathType: ImplementationSpecific
+        backend:
+          service:
+            name: api
+            port:
+              number: 5001
+      - path: /files/*
+        pathType: ImplementationSpecific
+        backend:
+          service:
+            name: api
+            port:
+              number: 5001                          
+  defaultBackend:
+    service:
+      name: web
+      port:
+        number: 3000

@@ -1,0 +1,180 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    appe: worker
+  name: worker
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      appe: worker
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        appe: worker
+    spec:
+      containers:
+        - env:
+            - name: AZURE_BLOB_ACCOUNT_KEY
+              value: difyai
+            - name: AZURE_BLOB_ACCOUNT_NAME
+              value: difyai
+            - name: AZURE_BLOB_ACCOUNT_URL
+              value: https://<your_account_name>.blob.core.windows.net
+            - name: AZURE_BLOB_CONTAINER_NAME
+              value: difyai-container
+            - name: CELERY_BROKER_URL
+              value: redis://$REDIS_HOST:6379/1
+            - name: CONSOLE_WEB_URL
+            - name: DB_DATABASE
+              value: dify
+            - name: DB_HOST
+              value: $DB_HOST
+            - name: DB_PASSWORD
+              value: "$DB_PASSWORD"
+            - name: DB_PORT
+              value: "5432"
+            - name: DB_USERNAME
+              value: postgres
+            - name: GOOGLE_STORAGE_BUCKET_NAME
+              value: yout-bucket-name
+            - name: GOOGLE_STORAGE_SERVICE_ACCOUNT_JSON_BASE64
+              value: your-google-service-account-json-base64-string
+            - name: INDEXING_MAX_SEGMENTATION_TOKENS_LENGTH
+              value: "1000"
+            - name: LOG_LEVEL
+              value: DEBUG
+            - name: MAIL_DEFAULT_SEND_FROM
+              value: 'YOUR EMAIL FROM (eg: no-reply <no-reply@dify.ai>)'
+            - name: MAIL_TYPE
+            - name: MILVUS_HOST
+              value: 127.0.0.1
+            - name: MILVUS_PASSWORD
+              value: Milvus
+            - name: MILVUS_PORT
+              value: "19530"
+            - name: MILVUS_SECURE
+              value: "false"
+            - name: MILVUS_USER
+              value: root
+            - name: MODE
+              value: worker
+            - name: NOTION_CLIENT_ID
+              value: you-client-id
+            - name: NOTION_CLIENT_SECRET
+              value: you-client-secret
+            - name: NOTION_INTEGRATION_TYPE
+              value: public
+            - name: NOTION_INTERNAL_SECRET
+              value: you-internal-secret
+            - name: PGVECTOR_DATABASE
+              value: dify
+            - name: PGVECTOR_HOST
+              value: pgvector
+            - name: PGVECTOR_PASSWORD
+              value: difyai123456
+            - name: PGVECTOR_PORT
+              value: "5432"
+            - name: PGVECTOR_USER
+              value: postgres
+            - name: QDRANT_API_KEY
+              value: difyai123456
+            - name: QDRANT_CLIENT_TIMEOUT
+              value: "20"
+            - name: QDRANT_GRPC_ENABLED
+              value: "false"
+            - name: QDRANT_GRPC_PORT
+              value: "6334"
+            - name: QDRANT_URL
+              value: http://qdrant:6333
+            - name: REDIS_DB
+              value: "0"
+            - name: REDIS_HOST
+              value: $REDIS_HOST
+            # - name: REDIS_PASSWORD
+            #   value: difyai123456
+            - name: REDIS_PORT
+              value: "6379"
+            - name: REDIS_USERNAME
+            - name: REDIS_USE_SSL
+              value: "false"
+            - name: RELYT_DATABASE
+              value: postgres
+            - name: RELYT_HOST
+              value: db
+            - name: RELYT_PASSWORD
+              value: difyai123456
+            - name: RELYT_PORT
+              value: "5432"
+            - name: RELYT_USER
+              value: postgres
+            - name: RESEND_API_KEY
+            - name: RESEND_API_URL
+              value: https://api.resend.com
+            - name: S3_ACCESS_KEY
+              value: ak-difyai
+            - name: S3_BUCKET_NAME
+              value: difyai
+            - name: S3_ENDPOINT
+              value: https://xxx.r2.cloudflarestorage.com
+            - name: S3_REGION
+              value: us-east-1
+            - name: S3_SECRET_KEY
+              value: sk-difyai
+            - name: SECRET_KEY
+              value: sk-9f73s3ljTXVcMT3Blb3ljTqtsKiGHXVcMT3BlbkFJLK7U
+            - name: SMTP_OPPORTUNISTIC_TLS
+              value: "false"
+            - name: SMTP_PASSWORD
+            - name: SMTP_PORT
+              value: "465"
+            - name: SMTP_SERVER
+            - name: SMTP_USERNAME
+            - name: SMTP_USE_TLS
+              value: "true"
+            - name: STORAGE_LOCAL_PATH
+              value: storage
+            - name: STORAGE_TYPE
+              value: local
+            - name: TIDB_VECTOR_DATABASE
+              value: dify
+            - name: TIDB_VECTOR_HOST
+              value: tidb
+            - name: TIDB_VECTOR_PASSWORD
+              value: xxxxxx
+            - name: TIDB_VECTOR_PORT
+              value: "4000"
+            - name: TIDB_VECTOR_USER
+              value: xxx.root
+            - name: VECTOR_STORE
+              value: weaviate
+            - name: WEAVIATE_API_KEY
+              value: WVF5YThaHlkYwhGUSmCRgsX3tD5ngdN8pkih
+            - name: WEAVIATE_ENDPOINT
+              value: http://weaviate:8080
+          image: langgenius/dify-api:$DIFY_VERSION
+          name: worker
+          volumeMounts:
+            - mountPath: /app/api/storage
+              name: dify-user-data
+      restartPolicy: Always
+      volumes:
+        - name: dify-user-data
+          persistentVolumeClaim:
+            claimName: dify-user-data      
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  labels:
+    io.kompose.service: dify-user-data
+  name: dify-user-data
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Gi
