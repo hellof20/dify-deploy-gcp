@@ -1,0 +1,60 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dify-sandbox
+  labels:
+    app: dify-sandbox
+spec:
+  replicas: 1
+  revisionHistoryLimit: 1
+  selector:
+    matchLabels:
+      app: dify-sandbox
+  template:
+    metadata:
+      labels:
+        app: dify-sandbox
+    spec:
+      automountServiceAccountToken: false
+      containers:
+        - name: dify-sandbox
+          image: langgenius/dify-sandbox:0.2.1
+          env:
+            - name: API_KEY
+              value: 'dify-sandbox'
+            - name: GIN_MODE
+              value: release
+            - name: WORKER_TIMEOUT
+              value: '15'
+            - name: ENABLE_NETWORK
+              value: "true"
+            - name: SANDBOX_PORT
+              value: "8194"
+          resources:
+            requests:
+              cpu: 100m
+              memory: 128Mi
+            limits:
+              cpu: 500m
+              memory: 1Gi
+          ports:
+            - containerPort: 8194
+          imagePullPolicy: IfNotPresent
+
+---
+# DIFY SANDBOX SERVICE
+apiVersion: v1
+kind: Service
+metadata:
+  name: sandbox
+spec:
+  ports:
+    - port: 8194
+      targetPort: 8194
+      protocol: TCP
+      name: dify-sandbox
+  type: ClusterIP
+  clusterIP: None
+  selector:
+    app: dify-sandbox
