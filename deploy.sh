@@ -103,6 +103,7 @@ envsubst < kubernetes/api.yaml | kubectl apply -f -
 envsubst < kubernetes/worker.yaml | kubectl apply -f -
 envsubst < kubernetes/web.yaml | kubectl apply -f -
 kubectl apply -f kubernetes/weaviate.yaml
+kubectl apply -f kubernetes/sandbox.yaml
 kubectl apply -f kubernetes/ingress.yaml
 
 
