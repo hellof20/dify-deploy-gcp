@@ -3,7 +3,8 @@
 - Cloud Armor and Global Load Balancing can provide global acceleration capabilities, DDoS protection, and WAF strategies.
 
 ## Architect
-![image](https://github.com/hellof20/dify-deploy-gcp/assets/8756642/e8064b98-b46c-4e92-beb5-5144f287e76a)
+![image](https://github.com/hellof20/dify-deploy-gcp/assets/8756642/c7236783-c5f1-4669-9b46-613a573430e1)
+
 
 ## How to use
 [![Open in Cloud Shell](https://gstatic.com/cloudssh/images/open-btn.svg)](https://shell.cloud.google.com/cloudshell/editor?cloudshell_git_repo=https://github.com/hellof20/dify-deploy-gcp.git)
