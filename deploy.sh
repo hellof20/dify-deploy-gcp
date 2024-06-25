@@ -1,17 +1,16 @@
 #!/bin/bash
 set -e
 
-# Parameters
-# export PROJECT_ID=speedy-victory-336109
+# export PROJECT_ID=project2-382305
 # export REGION=us-central1
-# export VPC_NETWORK=myvpc
+# export VPC_NETWORK=default
 # export GKE_CLUSTER_NAME=dify
 # export REDIS_CLUSTER_NAME=dify
 # export DB_CLUSTER_NAME=dify
 # export DB_PASSWORD=">)4-Z4rTL7Ai'23H"
-# export DIFY_VERSION=0.6.9
+# export DIFY_VERSION=0.6.11
 # export ZONE=${REGION}-b
-
+# export GOOGLE_STORAGE_BUCKET_NAME=pwm-dify-001
 
 echo "Enable services ... "
 gcloud services enable compute.googleapis.com \
@@ -19,6 +18,7 @@ gcloud services enable compute.googleapis.com \
     aiplatform.googleapis.com \
     sqladmin.googleapis.com \
     redis.googleapis.com \
+    servicenetworking.googleapis.com \
     --project ${PROJECT_ID}
 
 

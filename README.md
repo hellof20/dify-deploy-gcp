@@ -9,14 +9,15 @@
 [![Open in Cloud Shell](https://gstatic.com/cloudssh/images/open-btn.svg)](https://shell.cloud.google.com/cloudshell/editor?cloudshell_git_repo=https://github.com/hellof20/dify-deploy-gcp.git)
 - set parameters
 ```
-export PROJECT_ID=speedy-victory-336109
+export PROJECT_ID=your_project_id
 export REGION=us-central1
-export VPC_NETWORK=myvpc
+export VPC_NETWORK=your_vpc_network
 export GKE_CLUSTER_NAME=dify
 export REDIS_CLUSTER_NAME=dify
 export DB_CLUSTER_NAME=dify
-export DB_PASSWORD=">)4-Z4rTL7Ai'23H"
-export DIFY_VERSION=0.6.9
+export DB_PASSWORD=your_password
+export DIFY_VERSION=0.6.11
+export GOOGLE_STORAGE_BUCKET_NAME=your_bucket_name
 export ZONE=${REGION}-b
 ```
 - deploy

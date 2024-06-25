@@ -63,14 +63,14 @@ spec:
               value: "300"
             - name: FILES_URL
             - name: GOOGLE_STORAGE_BUCKET_NAME
-              value: yout-bucket-name
+              value: $GOOGLE_STORAGE_BUCKET_NAME
             - name: GOOGLE_STORAGE_SERVICE_ACCOUNT_JSON_BASE64
-              value: your-google-service-account-json-base64-string
+              value: ""
             - name: INDEXING_MAX_SEGMENTATION_TOKENS_LENGTH
               value: "1000"
             - name: INIT_PASSWORD
             - name: LOG_LEVEL
-              value: DEBUG
+              value: INFO
             - name: MAIL_DEFAULT_SEND_FROM
               value: 'YOUR EMAIL FROM (eg: no-reply <no-reply@dify.ai>)'
             - name: MAIL_TYPE
@@ -174,7 +174,7 @@ spec:
             - name: STORAGE_LOCAL_PATH
               value: storage
             - name: STORAGE_TYPE
-              value: local
+              value: google-storage
             - name: TEMPLATE_TRANSFORM_MAX_LENGTH
               value: "80000"
             - name: TIDB_VECTOR_DATABASE
