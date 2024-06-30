@@ -16,9 +16,12 @@ spec:
     spec:
       containers:
         - env:
-            - name: APP_API_URL
+            - name: EDITION
+              value: SELF_HOSTED
             - name: CONSOLE_API_URL
-            - name: SENTRY_DSN
+              value: ""
+            - name: APP_API_URL
+              value: ""
           image: langgenius/dify-web:$DIFY_VERSION
           name: web
           ports:
