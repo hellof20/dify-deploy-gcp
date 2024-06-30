@@ -17,7 +17,7 @@ export GKE_CLUSTER_NAME=dify
 export REDIS_CLUSTER_NAME=dify
 export DB_CLUSTER_NAME=dify
 export DB_PASSWORD=your_password
-export DIFY_VERSION=0.6.11
+export DIFY_VERSION=0.6.12
 export GOOGLE_STORAGE_BUCKET_NAME=your_bucket_name
 export ZONE=${REGION}-b
 ```
