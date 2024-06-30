@@ -47,12 +47,12 @@ gcloud redis instances create ${REDIS_CLUSTER_NAME} \
 
 
 echo "Create service account for dify ... "
-gcloud iam service-accounts create dify-sa \
+gcloud iam service-accounts create ${GKE_CLUSTER_NAME}-sa \
     --description="Service account for dify" \
-    --display-name="dify-sa" \
+    --display-name="${GKE_CLUSTER_NAME}-sa" \
     --project=${PROJECT_ID}
 gcloud projects add-iam-policy-binding ${PROJECT_ID} \
-    --member=serviceAccount:dify-sa@${PROJECT_ID}.iam.gserviceaccount.com \
+    --member=serviceAccount:${GKE_CLUSTER_NAME}-sa@${PROJECT_ID}.iam.gserviceaccount.com \
     --role='roles/editor' \
     --condition=None \
     --quiet > /dev/null
@@ -69,7 +69,7 @@ gcloud container clusters create ${GKE_CLUSTER_NAME} \
     --scopes "https://www.googleapis.com/auth/cloud-platform" \
     --region ${REGION} \
     --node-locations ${ZONE} \
-    --service-account dify-sa@${PROJECT_ID}.iam.gserviceaccount.com \
+    --service-account ${GKE_CLUSTER_NAME}-sa@${PROJECT_ID}.iam.gserviceaccount.com \
     --async
 
 
